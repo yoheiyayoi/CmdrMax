@@ -17,4 +17,8 @@ return function (Cmdr)
 	Cmdr:HandleEvent("_RegisterCommand", function(commandData: {})
 		Cmdr.Registry:RegisterCommandObject(commandData)
 	end)
+
+	Cmdr:HandleEvent("_RegisterRole", function(roleData: { Name: string, Permissions: { [string]: boolean } })
+		Cmdr.Registry.Roles[roleData.Name] = roleData.Permissions
+	end)
 end

@@ -67,6 +67,8 @@ function Window:AddLine(text, options)
 	line.TextColor3 = options.Color or line.TextColor3
 	line.RichText = options.RichText or false
 	line.Parent = LineFrame
+
+	Window:UpdateWindowHeight() -- add this to fix ui size not updating bug
 end
 
 -- Returns if the command bar is visible

@@ -39,7 +39,7 @@ local Cmdr do
 	Cmdr.Dispatcher = require(Shared.Dispatcher)(Cmdr)
 end
 
-if StarterGui:WaitForChild("Cmdr") and wait() and Player:WaitForChild("PlayerGui"):FindFirstChild("Cmdr") == nil then
+if StarterGui:WaitForChild("Cmdr") and task.wait() and Player:WaitForChild("PlayerGui"):FindFirstChild("Cmdr") == nil then
 	StarterGui.Cmdr:Clone().Parent = Player.PlayerGui
 end
 
@@ -48,12 +48,17 @@ local Interface = require(script.CmdrInterface)(Cmdr)
 function Cmdr:Init()
 	local data = self.RemoteFunction:InvokeServer("Init")
 	local Commands = data.Commands
+	local Roles = data.Roles
 
 	for _, cmd in next, Commands do
 		if self.Registry:GetCommand(cmd.Name) then continue end -- skip existing commands
 
 		print(cmd)
 		self.Registry:RegisterCommandObject(cmd)
+	end
+
+	for roleName, permissions in next, Roles do
+		self.Registry.Roles[roleName] = permissions
 	end
 
 	print("[CmdrMax] - 🎉 Client initialized!")

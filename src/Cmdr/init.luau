@@ -43,8 +43,11 @@ Cmdr.RemoteFunction.OnServerInvoke = function (player, text, options)
 			commandsList[name] = clientData
 		end
 
+		local rolesList = Cmdr.Registry:GetRoles()
+
 		return {
-			Commands = commandsList
+			Commands = commandsList,
+			Roles = rolesList,
 		}
 	end
 	

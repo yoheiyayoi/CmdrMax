@@ -7,12 +7,18 @@ return function (registry)
             return
         end
 
+        -- the owner (creator) always has permission to run commands
         if context.Group == "DefaultAdmin" and context.Executor.UserId == game.CreatorId then
             return
         end
 
-		local rolePermissions = registry.Roles[role]
+        local Roles = registry:GetRoles()
+		local rolePermissions = Roles[role]
 
+        if not rolePermissions then
+            return "You don't have permission to run this command"
+        end
+        
         for _, perm in next, context.Permissions do
             if rolePermissions[perm] then
                 return

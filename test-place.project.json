@@ -13,7 +13,7 @@
       "Script": {
         "$className": "Script",
         "$properties": {
-          "Source": "local Players = game:GetService(\"Players\")\n\nlocal CmdrMax = require(\"./CmdrMax\")\nCmdrMax.RegisterDefaultCommands()\n\nCmdrMax.SetRolePermissions(\"admin\", { \"a\", \"b\", \"c\" })\n\nCmdrMax.AddCommand(\"helloworld\", {\n\tDescription = \"Testing\",\n\tArgs = {},\n\tPermissions = {},\n\t\n\tRun = function(context)\n\t\treturn \"Hello world!\"\n\tend,\n})\n\nPlayers.PlayerAdded:Connect(function(plr)\n\tCmdrMax.GiveRole(plr, \"admin\")\nend)"
+          "Source": "local Players = game:GetService(\"Players\")\n\nlocal CmdrMax = require(\"./CmdrMax\")\nCmdrMax.RegisterDefaultCommands()\n\nCmdrMax.SetRolePermissions(\"admin\", { \"a\", \"b\", \"c\" })\n\nCmdrMax.AddCommand(\"helloworld\", {\n\tDescription = \"Testing\",\n\tArgs = {},\n\tPermissions = { \"a\" },\n\t\n\tRun = function(context)\n\t\treturn \"Hello world!\"\n\tend,\n})\n\nPlayers.PlayerAdded:Connect(function(plr)\n\tCmdrMax.GiveRole(plr, \"admin\")\nend)"
         }
       }
     },

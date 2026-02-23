@@ -28,7 +28,7 @@ export type CommandData = {
 	ClientRun: ((context: any, ...any) -> ())?;
 }
 
-type CmdrMaxEvent = "Init" | "_RegisterCommand"
+type CmdrMaxEvent = "Init" | "_RegisterCommand" | "_RegisterRole"
 
 --: Functions
 
@@ -78,6 +78,7 @@ function method.SetRolePermissions(role: string, permissions: { string })
 	assert(not Roles[role], `[CmdrMax] - Role "{role}" already exist!`)
 
 	Roles[role] = Cmdr.Util.MakeDictionary(permissions)
+	SendEvent("_RegisterRole", { Name = role, Permissions = Roles[role] })
 end
 
 function method.GiveRole(player: Player, role: string)

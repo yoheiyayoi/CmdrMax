@@ -289,6 +289,11 @@ function Registry:FlushAutoExecBuffer()
 	self.AutoExecBuffer = {}
 end
 
+--// CmdrMax Functions
+function Registry:GetRoles(): { [string]: { [string]: boolean } }
+	return self.Roles
+end
+
 return function (cmdr)
 	Registry.Cmdr = cmdr
 

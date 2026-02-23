@@ -27,6 +27,9 @@ function Command.new (options)
 		Arguments = {}; -- A table which will hold ArgumentContexts for each argument
 		Data = options.Data; -- A special container for any additional data the command needs to collect from the client
 		Response = nil; -- Will be set at the very end when the command is run and a string is returned from the Run function.
+
+		-- CmdrMax;
+		Permissions = options.CommandObject.Permissions;
 	}
 
 	setmetatable(self, Command)
